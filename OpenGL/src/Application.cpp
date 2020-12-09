@@ -37,6 +37,15 @@ int main(void)
     glBindBuffer(GL_ARRAY_BUFFER, buffer); // selects the buffer
     glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(float), positions, GL_STATIC_DRAW); // size is in bytes
 
+    /* This will draw the triangle again.
+    * How dows it work without a shader?
+    * Some GPUs will provide a default shader if none is specified.
+    */
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
